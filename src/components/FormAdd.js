@@ -17,8 +17,13 @@ const FormAdd = (props) =>{
       const Title = titleRef.current.value;
       const Year = yearRef.current.value;
       const Plot = discriptionsRef.current.value;
-      const item = {Title, Year, Plot};
-      addNewMovie(item)
+      if(isValid(Title)&& isValid(Year) && isValid(Plot)){
+        const item = {Title, Year, Plot};
+        addNewMovie(item);
+      } else {
+        alert('Заполните все поля!')
+      }
+
   }
 
 
@@ -28,22 +33,29 @@ const FormAdd = (props) =>{
           console.error('Ошибка добавления', error)
     }); 
   }
+
+  function isValid(value){
+    return (value !== '' || undefined)?true:false;
+  }
   
     return (
       <Form onSubmit={handleSubmit}>
-        <Form.Field>
+        <Form.Field required>
           <label>Title</label>
           <input placeholder='Title' ref={titleRef} />
         </Form.Field>
-        <Form.Field>
+        <Form.Field required>
           <label>Year</label>
           <input placeholder='Year'  ref={yearRef} />
         </Form.Field>
-        <Form.Field>
+        <Form.Field required>
           <label>Discriptions</label>
           <input placeholder='Discriptions'  ref={discriptionsRef} />
         </Form.Field>
-        <Button type='submit'>Save movie</Button>
+        <div>
+            <Button type='submit'>Save movie</Button>
+            <a onClick={props.close}><Button >Close</Button></a>
+        </div>
       </Form>
   )
 }

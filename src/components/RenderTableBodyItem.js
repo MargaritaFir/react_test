@@ -17,9 +17,9 @@ const RenderTableBodyItem = (props) => {
    return (
         <Table.Row id={props.id}>
             <Table.Cell>{props.Title}</Table.Cell>
-            <Table.Cell>{props.Year}</Table.Cell>
+            <Table.Cell textAlign={"center"}>{props.Year}</Table.Cell>
             <Table.Cell>{props.Plot}</Table.Cell>
-            <Table.Cell id={props.id} ><a id={props.id} onClick={deleteMovie}><Icon disabled name='delete' /> </a></Table.Cell>
+            <Table.Cell textAlign={"center"} id={props.id} ><a id={props.id} onClick={deleteMovie}><Icon disabled name='delete' /> </a></Table.Cell>
         </Table.Row> 
     )
 
